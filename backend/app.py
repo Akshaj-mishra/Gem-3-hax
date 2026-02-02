@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
-import google.generativeai as genai
+import google as genai
 import os
 from dotenv import load_dotenv
 
