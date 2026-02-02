@@ -1,43 +1,37 @@
 // src/pages/LandingPage.tsx
-import React, { Suspense, lazy } from 'react';
-
-// Regular imports for critical "above-the-fold" components
-import Navbar from '../components/UI/Navbar/Navbar';
-import Hero from '../components/Hero/Hero';
-
-// Lazy load non-critical components to optimize initial bundle size
-//const Features = lazy(() => import('../components/Features/Features'));
-//const Pricing = lazy(() => import('../components/Pricing/Pricing'));
-//const Footer = lazy(() => import('../components/Footer/Footer'));
+import React, { useRef, useEffect, Suspense } from 'react';
+import Navbar from '../components/UI/Navbar/Navbar.tsx';
+import { sections } from '../components/ComponentsRegistery.tsx';
+import { SmoothScroll } from '../components/Providers/SmoothScroll';
 
 const LandingPage: React.FC = () => {
+  const cursorRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    // Clean up event listener when leaving the landing page
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="relative min-h-screen bg-white dark:bg-slate-950 selection:bg-blue-100 selection:text-blue-700">
-      {/* 1. Global Navigation */}
-      <Navbar />
-
-      {/* 2. Main Content Container */}
-      <main>
-        {/* Hero is loaded immediately as it's the first thing users see */}
-        <Hero />
-
-        {/* 3. Sections with Suspense for lazy-loaded parts */}
-        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
-          <section id="features">
-            {/* <Features /> - Placeholder for when you build this */}
-          </section>
-
-          <section id="pricing" className="bg-slate-50 dark:bg-slate-900/50">
-            {/* <Pricing /> - Placeholder */}
-          </section>
-        </Suspense>
-      </main>
-
-      {/* 4. Footer */}
-      <Suspense fallback={null}>
-        {/* <Footer /> */}
-      </Suspense>
-    </div>
+    <SmoothScroll>
+      <div className="relative min-h-screen bg-slate-950 overflow-hidden">
+        <main className="relative z-10 w-full flex flex-col items-center">
+          <Navbar />
+          {sections.map(({ id, Component }) => (
+            <section key={id} id={id} className="w-full">
+              <Suspense fallback={null}>
+                <Component />
+              </Suspense>
+            </section>
+          ))}
+        </main>
+      </div>
+    </SmoothScroll>
   );
 };
 

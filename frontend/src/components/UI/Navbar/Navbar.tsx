@@ -19,7 +19,6 @@ const navItems: NavItem[] = [
   { name: "Features", id: "features" },
   { name: "Solutions", id: "solutions" },
   { name: "Testimonials", id: "testimonials" },
-  { name: "Pricing", id: "pricing" },
 ];
 
 const SCROLL_THRESHOLD = 20;
