@@ -27,17 +27,17 @@ api_key = os.getenv("GOOGLE_API_KEY")
 try:
     genai.configure(api_key=api_key)
     gemini_model = genai.GenerativeModel("gemini-3-flash-preview")
-    print("✅ Gemini AI configured successfully")
+    print("Gemini AI configured successfully")
     
     
 except Exception as e:
-    print(f"❌ Error configuring Gemini AI: {e}")
+    print(f" Error configuring Gemini AI: {e}")
     gemini_model = None
 
 
 @app.get("/")
 def root():
-    return {"message": "🚀 FastAPI backend is running and CORS is enabled!"}
+    return {"message": " FastAPI backend is running and CORS is enabled!"}
 
 
 @app.post("/chat")
