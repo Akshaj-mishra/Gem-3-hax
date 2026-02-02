@@ -98,11 +98,8 @@ const Navbar: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className="hidden sm:block text-sm font-bold text-slate-700 dark:text-slate-200 px-4 py-2 hover:text-blue-600 transition-colors">
-            Log in
-          </button>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md shadow-blue-500/20 transition-all active:scale-95">
-            Start Free
+            Try Now
           </button>
           
           {/* Mobile Toggle */}
