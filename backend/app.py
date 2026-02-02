@@ -41,7 +41,7 @@ def root():
 
 
 @app.post("/chat")
-async def analyze_plant(question: str = Form("")):
+async def chat(question: str = Form("")):
 
     try:
         response = gemini_model.generate_content(question)
