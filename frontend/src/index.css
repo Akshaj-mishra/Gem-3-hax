@@ -58,3 +58,39 @@ html.lenis {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/* --- Logo & Brand Animations --- */
+@layer utilities {
+  /* Mesh Rotation: The slow background spin */
+  .animate-logo-mesh {
+    transform-origin: center;
+    animation: logo-spin 25s linear infinite;
+  }
+
+  /* Core Pulse: The central spark breathing */
+  .animate-logo-spark {
+    transform-origin: center;
+    animation: logo-pulse 3s ease-in-out infinite;
+  }
+
+  /* Orbital Spin: The pink/blue dots */
+  .animate-logo-orbit {
+    transform-origin: center;
+    animation: logo-orbit 12s linear infinite;
+  }
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes logo-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.94); opacity: 0.8; }
+}
+
+@keyframes logo-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
