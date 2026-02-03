@@ -1,50 +1,50 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="120" fill="#1E1B4B"/>
-  <rect x="2" y="2" width="508" height="508" rx="118" stroke="white" stroke-opacity="0.05" stroke-width="4"/>
-  
-  <g opacity="0.5" filter="url(#mesh_glow)">
-    <circle cx="256" cy="256" r="180" stroke="url(#mesh_grad)" stroke-width="1.5" stroke-dasharray="10 15"/>
-    <path d="M120 256L256 120L392 256L256 392Z" stroke="white" stroke-opacity="0.15"/>
-  </g>
+  <rect width="512" height="512" rx="120" fill="#1E1B4B"/>
+  <rect x="2" y="2" width="508" height="508" rx="118" stroke="white" stroke-opacity="0.05" stroke-width="4"/>
+  
+  <g opacity="0.5" filter="url(#mesh_glow)">
+    <circle cx="256" cy="256" r="180" stroke="url(#mesh_grad)" stroke-width="1.5" stroke-dasharray="10 15"/>
+    <path d="M120 256L256 120L392 256L256 392Z" stroke="white" stroke-opacity="0.15"/>
+  </g>
 
-  <circle cx="256" cy="256" r="115" fill="black" fill-opacity="0.2"/> <circle cx="256" cy="256" r="110" fill="url(#orb_grad)" filter="url(#soft_glow)"/>
-  
-  <path d="M180 180C200 160 240 150 280 160" stroke="white" stroke-width="8" stroke-linecap="round" stroke-opacity="0.2" filter="url(#reflection_blur)"/>
+  <circle cx="256" cy="256" r="115" fill="black" fill-opacity="0.2"/> <circle cx="256" cy="256" r="110" fill="url(#orb_grad)" filter="url(#soft_glow)"/>
+  
+  <path d="M180 180C200 160 240 150 280 160" stroke="white" stroke-width="8" stroke-linecap="round" stroke-opacity="0.2" filter="url(#reflection_blur)"/>
 
-  <g filter="url(#spark_bloom)">
-    <path d="M256 160C256 160 275 230 320 256C275 282 256 352 256 352C256 352 237 282 192 256C237 230 256 160 256 160Z" fill="white"/>
-    <path d="M256 210C256 210 265 240 285 256C265 272 256 302 256 302C256 302 247 272 227 256C247 240 256 210 256 210Z" fill="#E0E7FF"/>
-  </g>
-  
-  <circle cx="330" cy="180" r="14" fill="#F472B6" filter="url(#dot_glow)"/>
-  <circle cx="180" cy="330" r="10" fill="#60A5FA" filter="url(#dot_glow)"/>
+  <g filter="url(#spark_bloom)">
+    <path d="M256 160C256 160 275 230 320 256C275 282 256 352 256 352C256 352 237 282 192 256C237 230 256 160 256 160Z" fill="white"/>
+    <path d="M256 210C256 210 265 240 285 256C265 272 256 302 256 302C256 302 247 272 227 256C247 240 256 210 256 210Z" fill="#E0E7FF"/>
+  </g>
+  
+  <circle cx="330" cy="180" r="14" fill="#F472B6" filter="url(#dot_glow)"/>
+  <circle cx="180" cy="330" r="10" fill="#60A5FA" filter="url(#dot_glow)"/>
 
-  <defs>
-    <filter id="spark_bloom" x="150" y="120" width="212" height="272" filterUnits="userSpaceOnUse">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+  <defs>
+    <filter id="spark_bloom" x="150" y="120" width="212" height="272" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
 
-    <filter id="soft_glow" x="100" y="100" width="312" height="312" filterUnits="userSpaceOnUse">
-      <feGaussianBlur stdDeviation="15" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+    <filter id="soft_glow" x="100" y="100" width="312" height="312" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
 
-    <filter id="reflection_blur" x="170" y="140" width="120" height="50">
-      <feGaussianBlur stdDeviation="3"/>
-    </filter>
+    <filter id="reflection_blur" x="170" y="140" width="120" height="50">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
 
-    <filter id="dot_glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3"/>
-    </filter>
+    <filter id="dot_glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
 
-    <linearGradient id="mesh_grad" x1="120" y1="120" x2="392" y2="392" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#3B82F6"/>
-      <stop offset="1" stop-color="#D946EF"/>
-    </linearGradient>
+    <linearGradient id="mesh_grad" x1="120" y1="120" x2="392" y2="392" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
 
-    <radialGradient id="orb_grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(110)">
-      <stop stop-color="#4F46E5"/> <stop offset="1" stop-color="#1E1B4B"/>
-    </radialGradient>
-  </defs>
+    <radialGradient id="orb_grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(110)">
+      <stop stop-color="#4F46E5"/> <stop offset="1" stop-color="#1E1B4B"/>
+    </radialGradient>
+  </defs>
 </svg>

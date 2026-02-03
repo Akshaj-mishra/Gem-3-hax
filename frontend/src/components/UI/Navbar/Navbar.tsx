@@ -1,11 +1,13 @@
 // src/components/UI/Navbar/Navbar.tsx
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Rocket, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-// Utility for cleaner tailwind classes
+// Option 1: SVGR Import
+import Logo from "../../../assets/AnimatedIcon.svg?react";
+
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -30,7 +32,6 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Scroll observer
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -41,9 +42,7 @@ const Navbar: React.FC = () => {
 
   const scrollToSection = useCallback((id: string) => {
     const el = document.getElementById(id);
-    
     if (el && location.pathname === "/") {
-      // If you're using Lenis, you'd call lenis.scrollTo(el) here
       el.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/", { state: { targetId: id } });
@@ -64,22 +63,21 @@ const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out",
         isScrolled 
-          ? "bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 py-3 shadow-sm" 
+          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 py-3 shadow-lg" 
           : "bg-transparent py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
-        {/* Branding */}
+        {/* Branding - Integrated with your new Logo */}
         <button 
           onClick={handleLogoClick}
-          className="flex items-center gap-2 group transition-transform active:scale-95"
+          className="flex items-center gap-3 group transition-transform active:scale-95"
         >
-          <div className="bg-blue-600 p-2 rounded-xl group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-blue-500/20">
-            <Zap size={20} className="text-white fill-current" />
-          </div>
+          <Logo className="w-10 h-10 drop-shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" />
+          
           <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">
-            Turbo<span className="text-blue-600">SaaS</span>
+            Gemini<span className="text-blue-600">Learn</span>
           </span>
         </button>
 
@@ -98,11 +96,13 @@ const Navbar: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md shadow-blue-500/20 transition-all active:scale-95">
-            Try Now
+          <button className="hidden sm:block text-sm font-bold text-slate-600 dark:text-slate-300 px-4 py-2 hover:text-blue-600 transition-colors">
+            Login
+          </button>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-500/25 transition-all active:scale-95">
+            Join Class
           </button>
           
-          {/* Mobile Toggle */}
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
@@ -112,9 +112,9 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <div className={cn(
-        "absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 md:hidden transition-all duration-300 ease-in-out origin-top",
+        "absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 md:hidden transition-all duration-300 ease-in-out origin-top shadow-2xl",
         menuOpen ? "scale-y-100 opacity-100 visible" : "scale-y-95 opacity-0 invisible"
       )}>
         <div className="p-6 space-y-4">
@@ -122,7 +122,7 @@ const Navbar: React.FC = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="block w-full text-left text-lg font-bold text-slate-700 dark:text-slate-200 hover:text-blue-600 py-2 border-b border-slate-50 dark:border-slate-800"
+              className="block w-full text-left text-lg font-bold text-slate-700 dark:text-slate-200 hover:text-blue-600 py-3 border-b border-slate-50 dark:border-slate-800"
             >
               {item.name}
             </button>
