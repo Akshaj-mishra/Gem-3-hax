@@ -96,11 +96,8 @@ const Navbar: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
-          <button className="hidden sm:block text-sm font-bold text-slate-600 dark:text-slate-300 px-4 py-2 hover:text-blue-600 transition-colors">
-            Login
-          </button>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-500/25 transition-all active:scale-95">
-            Join Class
+            Try Now
           </button>
           
           <button 
