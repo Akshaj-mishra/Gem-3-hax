@@ -2,17 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
+
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>GeminiLearn | AI Classroom Assistant</title>
-    
+
     <meta name="theme-color" content="#1E1B4B" />
     <meta name="description" content="Real-time AI classroom analysis powered by Gemini 3" />
-    
+
     <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <script>
+      // Check local storage or system preference immediately
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

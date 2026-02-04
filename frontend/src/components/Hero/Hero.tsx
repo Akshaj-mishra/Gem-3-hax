@@ -9,7 +9,10 @@ const Hero: React.FC = () => {
   return (
     // 'isolate' creates a scoped Z-stacking context
     // src/components/Hero/Hero.tsx
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-slate-950 isolate">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-500 isolate">
+      <div className="absolute inset-0 z-[-1] opacity-20 dark:opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+      </div>
       {/* Add 'text-center' here to ensure all nested text defaults to middle */}
       <div className="container relative mx-auto px-6 flex flex-col items-center text-center">
 

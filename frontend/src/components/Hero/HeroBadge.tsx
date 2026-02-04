@@ -3,10 +3,15 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
 export const HeroBadge: React.FC = () => (
-  <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 mb-8 overflow-hidden transition-all hover:border-blue-500/50 hover:bg-white/[0.06]">
+  <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full 
+    bg-slate-900/5 dark:bg-white/[0.03] 
+    border border-slate-900/10 dark:border-white/10 
+    mb-8 overflow-hidden transition-all 
+    hover:border-blue-500/50 hover:bg-slate-900/10 dark:hover:bg-white/[0.06] shadow-sm dark:shadow-none">
     
-    {/* 1. Shimmer Effect Overlay */}
-    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
+    {/* 1. Shimmer Effect Overlay - Now adapts to light/dark */}
+    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 
+      bg-gradient-to-r from-transparent via-blue-500/10 dark:via-white/5 to-transparent pointer-events-none" />
 
     {/* 2. Status Dot with multi-layered glow */}
     <div className="relative flex h-2 w-2">
@@ -14,14 +19,14 @@ export const HeroBadge: React.FC = () => (
       <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
     </div>
 
-    {/* 3. Text with better spacing and contrast */}
-    <span className="text-xs font-semibold tracking-wide text-slate-300 group-hover:text-blue-400 transition-colors">
-      New: <span className="text-slate-100">AI-Powered Workflows</span>
+    {/* 3. Text with dynamic contrast */}
+    <span className="text-xs font-semibold tracking-wide text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+      New: <span className="text-slate-900 dark:text-slate-100">Gemini 3 Integration</span>
     </span>
 
     <ChevronRight 
       size={14} 
-      className="text-slate-500 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" 
+      className="text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" 
     />
   </div>
 );

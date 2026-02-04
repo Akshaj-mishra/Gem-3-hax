@@ -5,8 +5,9 @@ import { Menu, X } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-// Option 1: SVGR Import
+// Internal imports
 import Logo from "../../../assets/AnimatedIcon.svg?react";
+import { DarkModeToggle } from "../Darkmode/DarkModeToggle.tsx"
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -96,6 +97,7 @@ const Navbar: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
+          <DarkModeToggle />
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-500/25 transition-all active:scale-95">
             Try Now
           </button>

@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
+/* 1. Explicitly define the dark strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    /* Set the default color scheme to prevent flashing */
-    color-scheme: dark light;
-    
-    /* Smooth scrolling for your Navbar links */
+    color-scheme: light dark; /* Changed order to default to light if no class present */
     scroll-behavior: smooth;
   }
 
   body {
-    @apply m-0 min-h-screen bg-slate-950 text-slate-50 antialiased;
-    /* This ensures your app always fills the screen and matches your Hero bg */
+    /* v4 dynamic background */
+    @apply m-0 min-h-screen transition-colors duration-500 antialiased;
+    @apply bg-slate-50 text-slate-900; /* Light Mode Defaults */
+    @apply dark:bg-slate-950 dark:text-slate-50; /* Dark Mode Overrides */
   }
 
   /* Remove default Vite button styles that clash with your UI */
@@ -93,4 +95,13 @@ html.lenis {
 @keyframes logo-orbit {
   from { transform: rotate(0deg); }
   to { transform: rotate(-360deg); }
+}
+
+/* Add this at the very bottom of index.css */
+html.dark body {
+  background-color: #020617 !important; /* slate-950 */
+}
+
+html:not(.dark) body {
+  background-color: #f8fafc !important; /* slate-50 */
 }

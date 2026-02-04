@@ -1,59 +1,66 @@
 // src/components/UI/FeatureCard/FeatureCard.tsx
-
 import React from 'react';
 
-interface FeatureCardProps {
-  children?: React.ReactNode;
-  title: string;
-  desc: string;
-  icon?: React.ReactNode;
-  className?: string; // For the col-span logic
-  variant?: 'glass' | 'primary' | 'code';
-}
-
 export const FeatureCard: React.FC<FeatureCardProps> = ({ 
-  children, 
   title, 
   desc, 
   icon, 
   className = "", 
-  variant = 'glass' 
+  variant = 'glass',
+  children 
 }) => {
-  // Common base styles
-  const baseStyles = `relative overflow-hidden rounded-3xl p-8 transition-all duration-300 border`;
+  const baseStyles = "relative overflow-hidden rounded-3xl p-8 transition-all duration-500 border ease-in-out";
   
-  // Variant specific styles
   const variants = {
-    glass: "bg-slate-900/40 border-white/10 hover:border-blue-500/30 group",
-    primary: "bg-gradient-to-br from-blue-600 to-indigo-700 border-white/5 text-white shadow-xl shadow-blue-900/20",
-    code: "bg-slate-950 border-white/10 flex flex-col md:flex-row items-center group"
+    glass: `
+      bg-white/30 dark:bg-slate-900/30 
+      backdrop-blur-md 
+      border-white/40 dark:border-white/10 
+      shadow-xl dark:shadow-none
+      hover:bg-white/40 dark:hover:bg-slate-800/40
+    `,
+    primary: `
+      bg-blue-600/80 backdrop-blur-lg
+      text-white border-white/20 
+      shadow-xl shadow-blue-500/20
+    `,
+    code: `
+      bg-slate-50/50 dark:bg-slate-950/50 
+      backdrop-blur-md border-slate-200 dark:border-white/10
+    `
   };
 
   return (
-    <div className={`${baseStyles} ${variants[variant]} ${className}`}>
-      <div className={variant === 'code' ? 'md:w-1/2 relative z-10' : 'relative z-10'}>
-        {icon && <div className="mb-4">{icon}</div>}
-        <h3 className={`font-bold mb-2 ${variant === 'primary' ? 'text-2xl' : 'text-xl text-white'}`}>
+    <div className={`${baseStyles} ${variants[variant]} ${className} group`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+      <div className="relative z-10">
+        
+        {/* --- ICON WRAPPER GOES HERE --- */}
+        {icon && (
+          <div className={`mb-4 inline-flex items-center justify-center transition-all duration-500 group-hover:scale-110
+            ${variant === 'primary' 
+              ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]' 
+              : 'text-blue-600 dark:text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]'
+            }`}
+          >
+            {icon}
+          </div>
+        )}
+        {/* ------------------------------- */}
+        
+        <h3 className={`font-bold mb-2 text-xl tracking-tight transition-colors
+          ${variant === 'primary' ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
           {title}
         </h3>
-        <p className={variant === 'primary' ? 'text-blue-100/80' : 'text-slate-400'}>
+        
+        <p className={`leading-relaxed transition-colors text-sm
+          ${variant === 'primary' ? 'text-blue-100' : 'text-slate-600 dark:text-slate-400'}`}>
           {desc}
         </p>
-        {/* Render extra children like the "NYC-1" badges if passed */}
-        {children && ! (variant === 'code') && <div className="mt-4">{children}</div>}
+        
+        {children}
       </div>
-
-      {/* Special slot for the Code visual specifically */}
-      {variant === 'code' && children && (
-        <div className="md:w-1/2 mt-6 md:mt-0">
-          {children}
-        </div>
-      )}
-
-      {/* Background decoration for Glass variant */}
-      {variant === 'glass' && (
-        <div className="absolute top-10 right-[-5%] w-64 h-64 bg-blue-600/5 rounded-full blur-3xl" />
-      )}
     </div>
   );
 };
